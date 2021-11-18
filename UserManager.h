@@ -6,6 +6,7 @@
 #include <windows.h>
 
 #include "User.h"
+#include "UsersFile.h"
 #include "AuxiliaryMethods.h"
 
 using namespace std;
@@ -14,6 +15,7 @@ class UserManager
 {
     int loggedInUserId;
     vector<User> users;
+    UsersFile usersFile;
 
     User enterDataOfNewUser();
     int getIdOfNewUser();
@@ -21,7 +23,7 @@ class UserManager
     int findUserId();
 
 public:
-    UserManager();
+    UserManager(string nameOfUsersFile);
     void registerUser();
     void displayAllUsers();
     void loginUser();

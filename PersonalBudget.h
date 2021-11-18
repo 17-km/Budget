@@ -12,6 +12,7 @@ class PersonalBudget
     UserManager userManager;
 
 public:
+    PersonalBudget(string nameOfUsersFile);
     void registerUser();
     void displayAllUsers();
     void loginUser();

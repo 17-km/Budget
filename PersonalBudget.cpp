@@ -1,13 +1,10 @@
 #include "PersonalBudget.h"
 
-    void registerUser();
-    void displayAllUsers();
-    void loginUser();
-    void displayLoggedInUser();
-    void changeLoggedInUserPassword();
-    void logoutUser();
+PersonalBudget::PersonalBudget(string nameOfUsersFile)
+    : userManager(nameOfUsersFile)
+{
 
-    bool isUserLoggedIn();
+}
 
 void PersonalBudget::registerUser()
 {

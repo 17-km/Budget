@@ -1,16 +1,19 @@
 #include "UserManager.h"
 
-UserManager::UserManager()
+UserManager::UserManager(string nameOfUsersFile)
+    : usersFile(nameOfUsersFile)
 {
     loggedInUserId = 0;
+    users = usersFile.loadUsersFromFile();
 }
-
 
 void UserManager::registerUser()
 {
     User user = enterDataOfNewUser();
 
     users.push_back(user);
+
+    usersFile.addUserToFile(user);
 
     cout << endl << "User account has been created successfully" << endl << endl;
     system("pause");
@@ -159,6 +162,7 @@ void UserManager::changeLoggedInUserPassword()
         if (users[i].getId() == loggedInUserId)
         {
             users[i].setPassword(newPassword);
+            usersFile.updateUsersPasswordInFile(users[i].getLogin(),newPassword);
             cout << "Password has been changed successfully." << endl << endl;
             system("pause");
         }
