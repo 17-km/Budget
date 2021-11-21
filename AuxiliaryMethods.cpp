@@ -1,12 +1,5 @@
 #include "AuxiliaryMethods.h"
 
-static string convertIntToString(int liczba);
-    static string loadTextLine();
-    static string changeFirstLetterToUppercaseAndRestToLowercase(string tekst);
-    static int convertStringToInt(string liczba);
-    static char loadCharacter();
-    static int loadIniger();
-
 string AuxiliaryMethods::convertIntToString(int numberInt)
 {
     ostringstream ss;
