@@ -5,6 +5,11 @@ void CashFlow::setId(int newId)
     if (newId >= 0)
         id = newId;
 }
+void CashFlow::setUsersId(int newUsersId)
+{
+    if (newUsersId >= 0)
+        usersId = newUsersId;
+}
 void CashFlow::setDate(int newDate)
 {
     date = newDate;
@@ -21,6 +26,10 @@ void CashFlow::setAmount(double newAmount)
 int CashFlow::getId()
 {
     return id;
+}
+int CashFlow::getUsersId()
+{
+    return usersId;
 }
 int CashFlow::getDate()
 {
