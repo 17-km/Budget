@@ -19,9 +19,7 @@ public:
     PersonalBudget(string nameOfUsersFile, string incomesFileName, string expensesFileName);
     ~PersonalBudget();
     void registerUser();
-    void displayAllUsers();
     void loginUser();
-    void displayLoggedInUser();
     void changeLoggedInUserPassword();
     void logoutUser();
 

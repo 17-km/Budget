@@ -51,7 +51,7 @@ int main()
                 personalBudget.registerUser();
                 break;
             case '2':
-                personalBudget.logoutUser();
+                personalBudget.loginUser();
                 break;
             case '9':
                 exit(0);

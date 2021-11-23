@@ -3,8 +3,8 @@
 CashFlowManager::CashFlowManager(string incomesFileName, string expensesFileName, int loggedInUserId)
     : incomesFile(incomesFileName), expensesFile(expensesFileName), LOGGED_IN_USER_ID(loggedInUserId)
     {
-        incomes = incomesFile.loadCashFlowsFromFile(LOGGED_IN_USER_ID);
-        expenses = expensesFile.loadCashFlowsFromFile(LOGGED_IN_USER_ID);
+        incomes = incomesFile.loadCashFlowsOfLoggedInUserFromFile(LOGGED_IN_USER_ID);
+        expenses = expensesFile.loadCashFlowsOfLoggedInUserFromFile(LOGGED_IN_USER_ID);
     }
 
 void CashFlowManager::addIncome()
@@ -37,7 +37,7 @@ void CashFlowManager::addExpense()
 {
     CashFlow newExpense;
     system("cls");
-    cout << " >>> ADDING NEW EXPENSE <<<" << endl << endl;
+    cout << ">>> ADDING NEW EXPENSE <<<" << endl << endl;
     newExpense.setId(expensesFile.getLastCashFlowId() + 1);
     newExpense.setUsersId(LOGGED_IN_USER_ID);
     cout << "Enter description of expense (e.g. food, restaurant, housing, transport, etc.): ";
@@ -61,7 +61,7 @@ void CashFlowManager::addExpense()
 
 double CashFlowManager::getAmountOfCashFlow()
 {
-    int amount;
+    double amount;
     string amountAsText;
     cout << "Enter amount, be accurate to two decimal places: ";
     amountAsText = AuxiliaryMethods::replaceCommaWithDot(AuxiliaryMethods::loadTextLine());
@@ -96,9 +96,10 @@ double CashFlowManager::displayCashFlowsForGiverPreriod(int startDate, int endDa
             {
                 cout.width(15);
                 cout << right << fixed << setprecision(2) << showpos << cashFlows[i].getAmount();
-                cout << '\t' << '\t';
-                cout.width(10);
-                cout << changeDateFromNumberToText(cashFlows[i].getDate());
+                cout.width(5);
+                cout << " ";
+                cout.width(15);
+                cout << left << changeDateFromNumberToText(cashFlows[i].getDate());
                 cout << cashFlows[i].getDescription() << endl;
                 totalAmountOfCashFlows += cashFlows[i].getAmount();
             }
@@ -115,31 +116,35 @@ void CashFlowManager::displayBudgetBalanceForGivenPeriod(int startDate, int endD
 {
     double budgetBalance = 0;
 
-    cout << " >>> BUDGET BALANCE FROM " << changeDateFromNumberToText(startDate) << " TO " << changeDateFromNumberToText(endDate) << " <<<" << endl << endl;
+    system("cls");
 
-    cout << " ---------- INCOMES ---------- " << endl;
+    cout << " >>> BUDGET BALANCE FROM " << changeDateFromNumberToText(startDate) << " TO " << changeDateFromNumberToText(endDate) << " <<<" << endl << endl << endl;
+
+    cout << " ---------------------- INCOMES ---------------------- " << endl << endl;
     cout.width(15);
     cout << right << "AMOUUNT:";
-    cout << '\t' << '\t';
-    cout.width(10);
-    cout << "DATE: ";
-    cout << "DESCRIPTION: " << endl;
+    cout.width(5);
+    cout << " ";
+    cout.width(15);
+    cout << left << "DATE: ";
+    cout << "DESCRIPTION: " << endl << endl;
     budgetBalance += displayCashFlowsForGiverPreriod(startDate,endDate,incomes);
 
     cout << endl;
 
-    cout << " ---------- EXPENSES ---------- " << endl;
+    cout << " ---------------------- EXPENSES ---------------------- " << endl << endl;
     cout.width(15);
     cout << right << "AMOUUNT:";
-    cout << '\t' << '\t';
-    cout.width(10);
-    cout << "DATE: ";
-    cout << "DESCRIPTION: " << endl;
+    cout.width(5);
+    cout << " ";
+    cout.width(15);
+    cout << left << "DATE: ";
+    cout << "DESCRIPTION: " << endl << endl;
     budgetBalance += displayCashFlowsForGiverPreriod(startDate,endDate,expenses);
 
     cout << endl << endl;
 
-    cout << "Your total balance of incomes and expenses is: " << fixed << setprecision(2) << showpos << budgetBalance << endl;;
+    cout << "Your total balance of incomes and expenses in selected period is: " << fixed << setprecision(2) << showpos << budgetBalance << endl << endl;
     if (budgetBalance > 0)
     {
         cout << "You saved your money. Great job!" << endl;
@@ -150,8 +155,10 @@ void CashFlowManager::displayBudgetBalanceForGivenPeriod(int startDate, int endD
     }
     else
     {
-        cout << "you spent exactly as much as you earned. Tighten your belt ;)" << endl;
+        cout << "You spent exactly as much as you earned. Tighten your belt ;)" << endl;
     }
+
+    cout  << endl << endl;
 
     system("pause");
 }
@@ -174,9 +181,9 @@ void CashFlowManager::displayBudgetBalanceForSelectedPeriod()
 {
     system("cls");
     cout << " >>> CHOSE BUDGT BALANCE RANGE <<<" << endl << endl;
-    cout << " --- FIRST DATE OF BALANCE ---";
+    cout << " --- FIRST DATE OF BALANCE ---" << endl;
     int startDate = getUsersDate();
-    cout << " --- LAST DATE OF BALANCE ---";
+    cout << endl<< " --- LAST DATE OF BALANCE ---" << endl;
     int endDate = getUsersDate();
 
     if (endDate >= startDate)
@@ -185,7 +192,8 @@ void CashFlowManager::displayBudgetBalanceForSelectedPeriod()
     }
     else
     {
-        cout << endl << endl << "Incorrect time range!";
+        cout << endl << endl << "Incorrect time range!" << endl << endl;
+        system("pause");
     }
 }
 

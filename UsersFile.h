@@ -18,9 +18,7 @@ public:
     UsersFile(string nameOfUsersFile): TextFile(nameOfUsersFile){};
     void addUserToFile(User user);
     vector<User> loadUsersFromFile();
-    void editUserInFile();
     void updateUsersPasswordInFile(string userLogin, string newPassword);
-
 };
 
 #endif // USERSFILE_H

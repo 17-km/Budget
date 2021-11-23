@@ -19,7 +19,7 @@ class CashFlowsFile : public TextFile
 public:
     CashFlowsFile(string nameOfCashFlowsFile): TextFile(nameOfCashFlowsFile){};
     bool addCashFlowToFile(CashFlow cashFlow);
-    vector<CashFlow> loadCashFlowsFromFile(int loggedInUserId);
+    vector<CashFlow> loadCashFlowsOfLoggedInUserFromFile(int loggedInUserId);
     int getLastCashFlowId();
 };
 

@@ -20,14 +20,12 @@ class CashFlowManager : public DateManager
     CashFlowsFile incomesFile;
     CashFlowsFile expensesFile;
 
+    static bool isCashFlowEarlier(CashFlow &earlierCashFlow, CashFlow &laterCashFlow);
     void sortCashFlowsVectorByDate(vector<CashFlow> &cashFlows);
     CashFlow enterDataOfNewCashFlow();
     void displayCashFlowData();
-    int maxIncomeId;
-    int maxExpenseId;
     double getAmountOfCashFlow();
     double roundToTwoDecimalPlaces(double amount);
-    static bool isCashFlowEarlier(CashFlow &earlierCashFlow, CashFlow &laterCashFlow);
     double displayCashFlowsForGiverPreriod(int startDate, int endDate, vector<CashFlow> &cashFlows);
     void displayBudgetBalanceForGivenPeriod(int startDate, int endDate);
 

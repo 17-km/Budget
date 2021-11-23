@@ -17,11 +17,6 @@ void PersonalBudget::registerUser()
     userManager.registerUser();
 }
 
-void PersonalBudget::displayAllUsers()
-{
-    userManager.displayAllUsers();
-}
-
 void PersonalBudget::loginUser()
 {
     userManager.loginUser();
@@ -29,11 +24,6 @@ void PersonalBudget::loginUser()
     {
         cashFlowManager = new CashFlowManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getLoggedInUserId());
     }
-}
-
-void PersonalBudget::displayLoggedInUser()
-{
-    userManager.displayLoggedInUser();
 }
 
 void PersonalBudget::changeLoggedInUserPassword()
