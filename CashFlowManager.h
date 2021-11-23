@@ -8,6 +8,7 @@
 
 #include "CashFlow.h"
 #include "DateManager.h"
+#include "CashFlowsFile.h"
 
 using namespace std;
 
@@ -16,6 +17,9 @@ class CashFlowManager : public DateManager
     const int LOGGED_IN_USER_ID;
     vector<CashFlow> incomes;
     vector<CashFlow> expenses;
+    CashFlowsFile incomesFile;
+    CashFlowsFile expensesFile;
+
     void sortCashFlowsVectorByDate(vector<CashFlow> &cashFlows);
     CashFlow enterDataOfNewCashFlow();
     void displayCashFlowData();
@@ -28,7 +32,7 @@ class CashFlowManager : public DateManager
     void displayBudgetBalanceForGivenPeriod(int startDate, int endDate);
 
 public:
-    CashFlowManager(int loggedInUserId);
+    CashFlowManager(string incomesFileName, string expensesFileName, int loggedInUserId);
     void addIncome();
     void addExpense();
     void displayBudgetBalanceForCurrentMonth();

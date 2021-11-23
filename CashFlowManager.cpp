@@ -1,10 +1,10 @@
 #include "CashFlowManager.h"
 
-CashFlowManager::CashFlowManager(int loggedInUserId)
-    : LOGGED_IN_USER_ID(loggedInUserId)
+CashFlowManager::CashFlowManager(string incomesFileName, string expensesFileName, int loggedInUserId)
+    : incomesFile(incomesFileName), expensesFile(expensesFileName), LOGGED_IN_USER_ID(loggedInUserId)
     {
-        int maxIncomeId = 0;
-        int maxExpenseId = 0;
+        incomes = incomesFile.loadCashFlowsFromFile(LOGGED_IN_USER_ID);
+        expenses = expensesFile.loadCashFlowsFromFile(LOGGED_IN_USER_ID);
     }
 
 void CashFlowManager::addIncome()
@@ -12,7 +12,7 @@ void CashFlowManager::addIncome()
     CashFlow newIncome;
     system("cls");
     cout << " >>> ADDING NEW INCOME <<<" << endl << endl;
-    newIncome.setId(++maxIncomeId);
+    newIncome.setId(incomesFile.getLastCashFlowId() + 1);
     newIncome.setUsersId(LOGGED_IN_USER_ID);
     cout << "Enter description of income (e.g. salary, interest on deposits, Internet sales, etc.): ";
     newIncome.setDescription(AuxiliaryMethods::loadTextLine());
@@ -20,6 +20,17 @@ void CashFlowManager::addIncome()
     newIncome.setAmount(getAmountOfCashFlow());
     incomes.push_back(newIncome);
     sortCashFlowsVectorByDate(incomes);
+
+    if (incomesFile.addCashFlowToFile(newIncome))
+    {
+        cout << "New income has been successfully added.";
+    }
+    else
+    {
+        cout << "Error. Failed to open file and add new income to it.";
+    }
+
+    system("pause");
 }
 
 void CashFlowManager::addExpense()
@@ -27,7 +38,7 @@ void CashFlowManager::addExpense()
     CashFlow newExpense;
     system("cls");
     cout << " >>> ADDING NEW EXPENSE <<<" << endl << endl;
-    newExpense.setId(++maxExpenseId);
+    newExpense.setId(expensesFile.getLastCashFlowId() + 1);
     newExpense.setUsersId(LOGGED_IN_USER_ID);
     cout << "Enter description of expense (e.g. food, restaurant, housing, transport, etc.): ";
     newExpense.setDescription(AuxiliaryMethods::loadTextLine());
@@ -35,6 +46,17 @@ void CashFlowManager::addExpense()
     newExpense.setAmount(-getAmountOfCashFlow());
     expenses.push_back(newExpense);
     sortCashFlowsVectorByDate(expenses);
+
+    if (expensesFile.addCashFlowToFile(newExpense))
+    {
+        cout << "New expense has been successfully added.";
+    }
+    else
+    {
+        cout << "Error. Failed to open file and add new expense to it.";
+    }
+
+    system("pause");
 }
 
 double CashFlowManager::getAmountOfCashFlow()
@@ -130,6 +152,8 @@ void CashFlowManager::displayBudgetBalanceForGivenPeriod(int startDate, int endD
     {
         cout << "you spent exactly as much as you earned. Tighten your belt ;)" << endl;
     }
+
+    system("pause");
 }
 
 void CashFlowManager::displayBudgetBalanceForCurrentMonth()
