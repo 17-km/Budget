@@ -1,59 +1,68 @@
 #include <iostream>
 #include "PersonalBudget.h"
-#include "DateManager.h"
 
 using namespace std;
 
+#include <iostream>
+
 int main()
 {
-    /*DateManager dateManager;
-    cout << dateManager.changeDateFromNumberToText(dateManager.TODAYS_DATE) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.MINIMUM_DATE) <<endl;
-    cout << dateManager.findFirstDayOfCurrentMonth(dateManager.TODAYS_DATE) << endl;
-    cout << dateManager.findFirstDayOfPreviousMonth(dateManager.TODAYS_DATE) << endl;
-    cout << dateManager.findFirstDayOfCurrentMonth(20120112) << endl;
-    cout << dateManager.findFirstDayOfPreviousMonth(20120112) << endl;
-    cout << dateManager.findLastDayOfMonth(dateManager.TODAYS_DATE) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20200122)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20190212)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20000312)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20010412)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20020512)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20030612)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20040712)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20050812)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20060912)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20071012)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20061112)) << endl;
-    cout << dateManager.changeDateFromNumberToText(dateManager.findLastDayOfMonth(20071212)) << endl;
+    PersonalBudget personalBudget("users.xml","incomes.xml","expenses.xml");
+    char choice;
 
-    int date = dateManager.getUsersDate();
+    while (true)
+    {
+        if (personalBudget.isUserLoggedIn())
+        {
+            choice = personalBudget.selectOptionFromUserMenu();
 
-    cout << endl << endl << date;*/
+            switch (choice)
+            {
+            case '1':
+                personalBudget.addIncome();
+                break;
+            case '2':
+                personalBudget.addExpense();
+                break;
+            case '3':
+                personalBudget.displayBudgetBalanceForCurrentMonth();
+                break;
+            case '4':
+                personalBudget.displayBudgetBalanceForPreviousMonth();
+                break;
+            case '5':
+                personalBudget.displayBudgetBalanceForSelectedPeriod();
+                break;
+            case '6':
+                personalBudget.changeLoggedInUserPassword();
+                break;
+            case '7':
+                personalBudget.logoutUser();
+                break;
+            }
+        }
+        else
+        {
+            choice = personalBudget.selectOptionFromMainMenu();
 
+            switch (choice)
+            {
+            case '1':
+                personalBudget.registerUser();
+                break;
+            case '2':
+                personalBudget.logoutUser();
+                break;
+            case '9':
+                exit(0);
+                break;
+            default:
+                cout << endl << "There is no such option in the menu." << endl << endl;
+                system("pause");
+                break;
+            }
+        }
+    }
 
-
-    /*PersonalBudget personalBudget("Users.xml");
-    personalBudget.registerUser();
-    personalBudget.registerUser();
-    personalBudget.displayAllUsers();
-    personalBudget.loginUser();
-    personalBudget.displayLoggedInUser();
-    personalBudget.logoutUser();
-    personalBudget.displayLoggedInUser();
-    personalBudget.loginUser();
-    personalBudget.displayLoggedInUser();
-    personalBudget.displayAllUsers();
-    personalBudget.changeLoggedInUserPassword();
-    personalBudget.displayLoggedInUser();
-    personalBudget.displayAllUsers();
-    personalBudget.logoutUser();
-    personalBudget.displayLoggedInUser();
-    personalBudget.displayAllUsers();
-    personalBudget.registerUser();
-    personalBudget.displayLoggedInUser();
-    personalBudget.displayAllUsers();*/
-
-
-
+    return 0;
 }
