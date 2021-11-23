@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <iomanip>
 
 #include "CashFlow.h"
 #include "DateManager.h"
@@ -15,7 +16,7 @@ class CashFlowManager : public DateManager
     const int LOGGED_IN_USER_ID;
     vector<CashFlow> incomes;
     vector<CashFlow> expenses;
-    void sortIncomesVectorByDate();
+    void sortCashFlowsVectorByDate(vector<CashFlow> &cashFlows);
     CashFlow enterDataOfNewCashFlow();
     void displayCashFlowData();
     int maxIncomeId;
@@ -23,12 +24,17 @@ class CashFlowManager : public DateManager
     double getAmountOfCashFlow();
     double roundToTwoDecimalPlaces(double amount);
     static bool isCashFlowEarlier(CashFlow &earlierCashFlow, CashFlow &laterCashFlow);
+    double displayCashFlowsForGiverPreriod(int startDate, int endDate, vector<CashFlow> &cashFlows);
+    void displayBudgetBalanceForGivenPeriod(int startDate, int endDate);
 
 public:
     CashFlowManager(int loggedInUserId);
     void addIncome();
     void addExpense();
-    void displayCashFlowsForGiverPreriod(int startDate, int endDate);
+    void displayBudgetBalanceForCurrentMonth();
+    void displayBudgetBalanceForPreviousMonth();
+    void displayBudgetBalanceForSelectedPeriod();
+
 };
 
 #endif // CASHFLOWMANAGER_H
