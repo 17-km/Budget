@@ -30,8 +30,8 @@ public:
     void displayLoggedInUser();
     void changeLoggedInUserPassword();
     void logoutUser();
-    int getLoggedInUserId();
     bool isUserLoggedIn();
+    int getLoggedInUserId();
 };
 
 #endif // USERMANAGER_H

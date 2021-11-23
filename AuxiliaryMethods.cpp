@@ -8,6 +8,14 @@ string AuxiliaryMethods::convertIntToString(int numberInt)
     return numberString;
 }
 
+string AuxiliaryMethods::convertDoubleToString(double numberDouble)
+{
+    ostringstream ss;
+    ss << numberDouble;
+    string numberString = ss.str();
+    return numberString;
+}
+
 string AuxiliaryMethods::loadTextLine()
 {
     string input = "";
@@ -84,9 +92,9 @@ string  AuxiliaryMethods::replaceCommaWithDot(string modifiedText)
 
 double AuxiliaryMethods::convertStringToDouble(string numberString)
 {
-    double numberInt;
+    double numberDouble;
     istringstream iss(numberString);
-    iss >> numberInt;
+    iss >> numberDouble;
 
-    return numberInt;
+    return numberDouble;
 }

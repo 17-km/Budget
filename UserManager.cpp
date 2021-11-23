@@ -9,6 +9,8 @@ UserManager::UserManager(string nameOfUsersFile)
 
 void UserManager::registerUser()
 {
+    system("cls");
+    cout << " >>> USER REGISTER <<<" << endl << endl;
     User user = enterDataOfNewUser();
 
     users.push_back(user);
@@ -96,10 +98,12 @@ void UserManager::loginUser()
 
 int UserManager::findUserId()
 {
+    system("cls");
+    cout << " >>> USER LOGIN <<<" << endl << endl;
     User user;
     string login = "", password = "";
 
-    cout << endl << "Type login: ";
+    cout << "Type login: ";
     login = AuxiliaryMethods::loadTextLine();
 
     for (int i = 0; i < users.size(); i++)
@@ -153,6 +157,8 @@ void UserManager::displayLoggedInUser()
 
 void UserManager::changeLoggedInUserPassword()
 {
+    system("cls");
+    cout << " >>> USER PASSWORD CHANGE <<<" << endl << endl;
     string newPassword = "";
     cout << "Type in new password: ";
     newPassword = AuxiliaryMethods::loadTextLine();

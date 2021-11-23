@@ -12,6 +12,7 @@ class AuxiliaryMethods
 {
 public:
     static string convertIntToString(int numberInt);
+    static string convertDoubleToString(double numberDouble);
     static string loadTextLine();
     static string changeFirstLetterToUppercaseAndRestToLowercase(string text);
     static int convertStringToInt(string number);

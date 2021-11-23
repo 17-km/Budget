@@ -21,7 +21,7 @@ bool CashFlowsFile::addCashFlowToFile(CashFlow cashFlow)
         xmlFile.AddElem("ID",cashFlow.getId());
         xmlFile.AddElem("DATE",DateManager::changeDateFromNumberToText(cashFlow.getDate()));
         xmlFile.AddElem("DESCRIPTION",cashFlow.getDescription());
-        xmlFile.AddElem("AMOUNT",cashFlow.getAmount());
+        xmlFile.AddElem("AMOUNT",AuxiliaryMethods::convertDoubleToString(cashFlow.getAmount()));
         xmlFile.OutOfElem();
         xmlFile.Save(FILE_NAME);
 
@@ -32,7 +32,7 @@ bool CashFlowsFile::addCashFlowToFile(CashFlow cashFlow)
     return false;
 }
 
-vector<CashFlow> CashFlowsFile::loadCashFlowsFromFile(int loggedInUserId)
+vector<CashFlow> CashFlowsFile::loadCashFlowsOfLoggedInUserFromFile(int loggedInUserId)
 {
     vector<CashFlow> cashFlows;
     CMarkup xmlFile;
@@ -64,7 +64,7 @@ vector<CashFlow> CashFlowsFile::loadCashFlowsFromFile(int loggedInUserId)
         }
         xmlFile.OutOfElem();
     }
-    xmlFile.FindChildElem("USERID");
+    xmlFile.FindChildElem("ID");
     lastCashFlowId = AuxiliaryMethods::convertStringToInt(xmlFile.GetChildData());
     }
     else
