@@ -19,11 +19,11 @@ class DateManager
     bool isDateFormatCorrect(string dateAsText);
     bool isDateCorrect(int date);
     bool isDateInAllowedRange(int date);
-    int changeDateFromTextToNumber (string dateAsText);
-    string changeDateFromNumberToText (int date);
-    int extractDayFromDate(int date);
-    int extractMonthFromDate(int date);
-    int extractYearFromDate(int date);
+    static int changeDateFromTextToNumber (string dateAsText);
+    static string changeDateFromNumberToText (int date);
+    static int extractDayFromDate(int date);
+    static int extractMonthFromDate(int date);
+    static int extractYearFromDate(int date);
     int findLastDayOfMonth(int date);
     int findFirstDayOfCurrentMonth();
     int findFirstDayOfPreviousMonth();

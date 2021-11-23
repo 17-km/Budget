@@ -11,12 +11,14 @@ using namespace std;
 class AuxiliaryMethods
 {
 public:
-    static string convertIntToString(int number);
+    static string convertIntToString(int numberInt);
     static string loadTextLine();
     static string changeFirstLetterToUppercaseAndRestToLowercase(string text);
     static int convertStringToInt(string number);
     static char loadCharacter();
     static int loadIniger();
+    static string replaceCommaWithDot(string modifiedText);
+    static double convertStringToDouble(string numberString);
 };
 
 #endif // AUXILIARYMETHODS_H

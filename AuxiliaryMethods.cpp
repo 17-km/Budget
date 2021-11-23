@@ -69,3 +69,24 @@ int AuxiliaryMethods::loadIniger()
     }
     return number;
 }
+
+string  AuxiliaryMethods::replaceCommaWithDot(string modifiedText)
+{
+    for (int characterPosition = 0; characterPosition < modifiedText.length(); characterPosition++)
+    {
+        if (modifiedText[characterPosition] == ',')
+        {
+            modifiedText[characterPosition] = '.';
+        }
+    }
+    return modifiedText;
+}
+
+double AuxiliaryMethods::convertStringToDouble(string numberString)
+{
+    double numberInt;
+    istringstream iss(numberString);
+    iss >> numberInt;
+
+    return numberInt;
+}
